@@ -9,7 +9,7 @@ import {CommonModule} from '@angular/common';
 
 @NgModule({
   imports:      [ routingAdmin,
-                  CommonModule ],
+                  CommonModule],
   exports:      [],
   declarations: [ AdminComponent ],
   bootstrap:    [ AdminComponent ]
