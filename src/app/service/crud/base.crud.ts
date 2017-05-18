@@ -1,38 +1,39 @@
 import {BaseService} from "../base.service";
 import {BaseDTO} from "../../model/base/base.dto";
+import {ListService} from '../../components/list/list.service';
+import {HttpService} from '../http/http.service';
 
 /**
  * Created by Guilherme on 10/04/2017.
  */
-
-export abstract class BaseCrudService<T extends BaseDTO> extends BaseService {
+export abstract class BaseCrudService<T extends BaseDTO> extends BaseService implements ListService<T> {
 
   /**
    * Retorna o dado especificado ou os dados do backend.
    */
   public read(id?: Number) : Promise<Array<T>> {
-    return this.getHttpService().get(this.getPatch(), id).then((data) => this.extract(data));
+    return this.httpService.get(this.getPatch(), id).then((data) => this.extract(data));
   }
 
   /**
    * Executa a criação do dado no backend.
    */
   public create(data: T) : Promise<T> {
-    return this.getHttpService().post(this.getPatch(), data).then((data) => this.extract(data));
+    return this.httpService.post(this.getPatch(), data).then((data) => this.extract(data));
   }
 
   /**
    * Executa a atualização dos dados no backend.
    */
   public update(data: T) : Promise<T> {
-    return this.getHttpService().put(this.getPatch(), data).then((data) => this.extract(data));
+    return this.httpService.put(this.getPatch(), data).then((data) => this.extract(data));
   }
 
   /**
    * Executa a atualização dos dados no backend.
    */
   public deleteById(id: Number) : Promise<T> {
-    return this.getHttpService().delete(this.getPatch(), id).then((data) => this.extract(data));
+    return this.httpService.delete(this.getPatch(), id).then((data) => this.extract(data));
   }
 
   /**

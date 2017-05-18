@@ -1,24 +1,17 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { HttpModule, JsonpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { CoreModule } from './core/core.module';
+import { ServiceModule } from './service/service.module';
 
 @NgModule({
-  imports:      [ BrowserModule,
-                  HttpModule,
-                  JsonpModule,
-                  RouterModule,
-                  FormsModule,
-                  ReactiveFormsModule,
-                  CoreModule,
-                  routing],
-  declarations: [ AppComponent ],
-  bootstrap:    [ AppComponent ]
+  imports: [
+    CoreModule.forRoot(),
+    ServiceModule.forRoot(),
+    routing
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

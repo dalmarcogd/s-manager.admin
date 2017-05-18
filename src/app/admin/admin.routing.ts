@@ -14,7 +14,7 @@ const routes: Routes = [
         path: 'login', loadChildren: 'app/admin/login/login.module#LoginModule'
       },
       {
-        path: 'pages', loadChildren: 'app/admin/pages/pages.module#PagesModule', canActivate: [ AuthGuard ]
+        path: 'pages', loadChildren: 'app/admin/pages/pages.module#PagesModule', canActivate: [ AuthGuard ], canActivateChild: [ AuthGuard ]
       },
       {
         path: 'notfound', loadChildren: 'app/admin/not.found/not.found.module#NotFoundModule'

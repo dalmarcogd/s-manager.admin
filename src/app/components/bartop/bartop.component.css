@@ -1,0 +1,40 @@
+#contentBarTop {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+#contentBarTop1 {
+  height: 50%;
+  width: 50%;
+  float: left;
+  position: relative;
+}
+
+#contentBarTop1 menu {
+  float: left;
+  margin: 1px 0px 0px 0px;
+  padding: 1px 1px 1px 1px;
+  width: 100%;
+}
+
+#contentBarTop2 {
+  height: 50%;
+  width: 50%;
+  float: left;
+  position: relative;
+}
+
+#contentBarTop3 {
+  height: 50%;
+  width: 50%;
+  float: right;
+  position: relative;
+}
+
+#contentBarTop4 {
+  height: 50%;
+  width: 50%;
+  float: right;
+  position: relative;
+}

@@ -8,9 +8,5 @@ import {HttpService} from "./http/http.service";
  */
 export abstract class BaseService {
 
-  constructor(private httpService: HttpService) {}
-
-  protected getHttpService(): HttpService {
-    return this.httpService;
-  }
+  constructor(protected httpService: HttpService) {}
 }

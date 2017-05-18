@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {TokenDTO} from "../../model/token/token.dto";
+import { Injectable } from '@angular/core';
+import { TokenDTO } from '../../model/token/token.dto';
 /**
  * Created by Guilherme on 07/04/2017.
  */
 
-const TOKEN: string = "token";
-const DATE_TOKEN: string = "datetoken";
+const TOKEN: string = 'token';
+const DATE_TOKEN: string = 'datetoken';
 
 @Injectable()
 export class TokenService {
@@ -29,8 +29,8 @@ export class TokenService {
   /**
    * Retorna o token to usuário
    */
-  public isTokenValid() : boolean {
-    return true;
+  public isTokenValid(): boolean {
+    return !!localStorage.getItem(TOKEN);
   }
 
   /**
@@ -43,7 +43,7 @@ export class TokenService {
   /**
    * Retorna a data que o token foi gerado.
    */
-  public getDate() : Date {
+  public getDate(): Date {
     return JSON.parse(localStorage.getItem(DATE_TOKEN));
   }
 }

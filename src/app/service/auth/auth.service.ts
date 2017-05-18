@@ -18,7 +18,7 @@ import {Router} from '@angular/router';
 @Injectable()
 export class AuthService extends BaseService {
 
-  constructor(httpService: HttpService, private tokenService: TokenService, private router: Router) {
+  constructor(protected httpService: HttpService, private tokenService: TokenService, private router: Router) {
     super(httpService);
   }
 
@@ -26,7 +26,7 @@ export class AuthService extends BaseService {
    * Efetua a autenticação no servidor, com os parametros recebidos.
    */
   login(username: string, password: string): Promise<Boolean> {
-    return this.getHttpService().post('/auth', new AuthCredentials(username, password)).then((data) => {
+    return this.httpService.post('/auth', new AuthCredentials(username, password)).then((data) => {
         console.log(data);
         if (data instanceof Object) {
           this.tokenService.setToken(data, new Date());
