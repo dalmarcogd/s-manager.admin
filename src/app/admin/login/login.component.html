@@ -1,7 +1,6 @@
 <div id="loginContent">
   <div id="loginBox">
-  
-  	<form [formGroup]="form" (ngSubmit)="doLogin(form.value)">
+    	<form [formGroup]="form" (ngSubmit)="doLogin(form.value)">
   		<ngl-form-element [error]="form.get('username').hasError('required')? form.get('username').getError('required') : null" label="Login"  class="slds-m-top--small">
   			<ng-template nglFormLabel><i>Login:</i>></ng-template>
  			<input nglFormControl formControlName="username" type="text" placeholder="Informe seu acesso...">

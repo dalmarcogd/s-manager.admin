@@ -1,4 +1,6 @@
 import {Component} from "@angular/core";
+import {MenuService} from "../../service/menu/menu.service";
+
 /**
  * Created by Guilherme on 03/04/2017.
  */
@@ -10,4 +12,7 @@ import {Component} from "@angular/core";
 })
 export class NotFoundComponent {
 
+  constructor(private menuService: MenuService) {
+    this.menuService.resetMenuOptionSelected();
+  }
 }

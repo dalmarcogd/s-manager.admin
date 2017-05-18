@@ -1,26 +1,25 @@
 /**
- * 
+ *
  */
-
-
-import { ComponentsModule } from '../components/components.module';
-import { ServiceModule } from '../service/service.module';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {NglModule} from 'ng-lightning';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
-  imports: [ ServiceModule,
-             ComponentsModule,
-             CommonModule,
-             FormsModule,
-             ReactiveFormsModule ],
-  exports: [ ServiceModule,
-             ComponentsModule,
-             CommonModule,
-             FormsModule,
-             ReactiveFormsModule ]
+  imports: [
+    CommonModule,
+    NglModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  exports: [
+    CommonModule,
+    NglModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule {
 }

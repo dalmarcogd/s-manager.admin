@@ -1,0 +1,11 @@
+<ngl-lookup [lookup]="search" [(pick)]='menuOptionSelected' [placeholder]="'O que você procura?'" [noResultsText]="'Nenhuma opção encontrada...'" (pickChange)="lookupMenuOptionSelected($event)">
+  <span nglPolymorphicLabel>
+    <svg nglIconCategory="standard" [nglIcon]="menuGroupSelected.icon" [ngClass]="'slds-icon-standard-' + menuGroupSelected.icon" class="slds-icon slds-icon--small"></svg>
+  </span>
+  <template nglPolymorphicItem [scopes]="menuGroups" (scopeChange)="menuGroupSelected = $event; lookupMenuGroupSelected($event)" let-item>
+    <p class="slds-truncate">
+      <svg nglIconCategory="standard" [nglIcon]="item.icon" [ngClass]="'slds-icon-standard-' + item.icon" class="slds-icon slds-icon--small slds-m-right--small"></svg>
+      {{ item.name }}
+    </p>
+  </template>
+</ngl-lookup>

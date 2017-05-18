@@ -10,10 +10,8 @@ import {LocalDataSource} from '../../../../node_modules/ng2-smart-table';
 })
 export class TableComponent {
 
-  settings= {
-    columns:{}
-  };
-  source: LocalDataSource;
+  settings= {columns:{}};
+  private source: LocalDataSource;
 
   constructor() {
     this.source = new LocalDataSource();
