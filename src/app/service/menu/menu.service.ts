@@ -1,3 +1,4 @@
+import { StringUtils } from './../../util/string/string.utils';
 import { Injectable } from '@angular/core';
 import { MenuGroup } from './menu.group';
 import { MenuOption } from './menu.option';
@@ -18,14 +19,14 @@ export class MenuService {
 
   constructor(private router: Router, private storageService: StorageService) {
     // Grupos
-    let home: MenuGroup = new MenuGroup('Home', 'home', 'home', 'admin/pages/home');
-    let all: MenuGroup = new MenuGroup('Todos', 'all', 'groups', 'admin/pages/all');
-    let register: MenuGroup = new MenuGroup('Cadastro', 'register', 'user', 'admin/pages/register');
-    let config: MenuGroup = new MenuGroup('Configuração', 'configuration','lead', 'admin/pages/configuration');
+    let home: MenuGroup = new MenuGroup('Home', 'home', 'home', '/admin/pages/home');
+    let all: MenuGroup = new MenuGroup('Todos', 'all', 'groups', '/admin/pages/all');
+    let register: MenuGroup = new MenuGroup('Cadastro', 'register', 'user', '/admin/pages/register');
+    let config: MenuGroup = new MenuGroup('Configuração', 'configuration','lead', '/admin/pages/configuration');
     // Opções
-    let module: MenuOption = new MenuOption('Módulos', 'module', 'groups', 'admin/pages/register/modules', register);
-    let costumer: MenuOption = new MenuOption('Clientes', 'costumer', 'groups', 'admin/pages/register/costumers', register);
-    let user: MenuOption = new MenuOption('Usuários', 'user', 'groups', 'admin/pages/register/users', register);
+    let module: MenuOption = new MenuOption('Módulos', 'module', 'groups', '/admin/pages/register/modules', register);
+    let costumer: MenuOption = new MenuOption('Clientes', 'costumer', 'groups', '/admin/pages/register/costumers', register);
+    let user: MenuOption = new MenuOption('Usuários', 'user', 'groups', '/admin/pages/register/users', register);
 
     all.menuOptions.push(module);
     all.menuOptions.push(costumer);
@@ -103,7 +104,7 @@ export class MenuService {
   }
 
   public setMenuUrl(url: string, navigate?: boolean) {
-    let resultOption: MenuOption = this.menuOptions.find((option: MenuOption) => url.search(option.router) > -1);
+    let resultOption: MenuOption = this.menuOptions.find((option: MenuOption) => StringUtils.equals(url, option.router));
     if (resultOption != null) {
       this.setMenuOptionSelected(resultOption, navigate);
       this.notify.next(resultOption);

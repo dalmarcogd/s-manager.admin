@@ -1,4 +1,7 @@
+import { ServiceModule } from './service/service.module';
+import { Injector } from '@angular/core';
 import {Component} from '@angular/core'
+import { ServiceLocator } from "./service/locator/service.locator";
 
 @Component({
   selector: 'app-admin',
@@ -6,5 +9,7 @@ import {Component} from '@angular/core'
   templateUrl: `./app.component.html`,
 })
 export class AppComponent {
-
+  constructor(injector: Injector) {
+    ServiceLocator.setInjector(injector);
+  }
 }

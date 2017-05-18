@@ -16,8 +16,8 @@ import {AppActionTaskFactory} from '../../../../core/task/action/app.action.task
 })
 export class ModuleListComponent extends ListComponent<ModuleDTO> {
 
-  constructor(appTask: AppTask, appActionTaskFactory: AppActionTaskFactory, private moduleCrudService: ModuleCrudService) {
-    super(appTask, appActionTaskFactory);
+  constructor(private moduleCrudService: ModuleCrudService) {
+    super();
   }
 
   getListService(): ListService<ModuleDTO> {
