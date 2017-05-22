@@ -1,3 +1,4 @@
+import { ADMIN_LOGIN } from './../../app.routing.mapping';
 /**
  * Created by Guilherme on 06/04/2017.
  */
@@ -23,7 +24,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     if (this.authService.isLoggedIn()) { return true; }
 
     // Navigate to the login page with extras
-    this.router.navigate(['/admin/login']);
+    this.router.navigate([ADMIN_LOGIN.getRoutingFull()]);
     return false;
   }
 }

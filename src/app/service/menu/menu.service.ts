@@ -1,3 +1,4 @@
+import { ADMIN_PAGES_HOME, ADMIN_PAGES_ALL, ADMIN_PAGES_REGISTER, ADMIN_PAGES_CONFIGURATION, ADMIN_PAGES_REGISTER_MODULE, ADMIN_PAGES_REGISTER_COSTUMER, ADMIN_PAGES_REGISTER_USER } from './../../app.routing.mapping';
 import { StringUtils } from './../../util/string/string.utils';
 import { Injectable } from '@angular/core';
 import { MenuGroup } from './menu.group';
@@ -19,20 +20,20 @@ export class MenuService {
 
   constructor(private router: Router, private storageService: StorageService) {
     // Grupos
-    let home: MenuGroup = new MenuGroup('Home', 'home', 'home', '/admin/pages/home');
-    let all: MenuGroup = new MenuGroup('Todos', 'all', 'groups', '/admin/pages/all');
-    let register: MenuGroup = new MenuGroup('Cadastro', 'register', 'user', '/admin/pages/register');
-    let config: MenuGroup = new MenuGroup('Configuração', 'configuration','lead', '/admin/pages/configuration');
+    let home: MenuGroup = new MenuGroup('Home', 'home', 'home', ADMIN_PAGES_HOME.getRoutingFull());
+    let all: MenuGroup = new MenuGroup('Todos', 'all', 'groups', ADMIN_PAGES_ALL.getRoutingFull());
+    let register: MenuGroup = new MenuGroup('Cadastro', 'register', 'user', ADMIN_PAGES_REGISTER.getRoutingFull());
+    let config: MenuGroup = new MenuGroup('Configuração', 'configuration','lead', ADMIN_PAGES_CONFIGURATION.getRoutingFull());
     // Opções
-    let module: MenuOption = new MenuOption('Módulos', 'module', 'groups', '/admin/pages/register/modules', register);
-    let costumer: MenuOption = new MenuOption('Clientes', 'costumer', 'groups', '/admin/pages/register/costumers', register);
-    let user: MenuOption = new MenuOption('Usuários', 'user', 'groups', '/admin/pages/register/users', register);
+    let module: MenuOption = new MenuOption('Módulos', 'module', 'groups', ADMIN_PAGES_REGISTER_MODULE.getRoutingFull(), register);
+    let costumer: MenuOption = new MenuOption('Clientes', 'costumer', 'groups', ADMIN_PAGES_REGISTER_COSTUMER.getRoutingFull(), register);
+    let user: MenuOption = new MenuOption('Usuários', 'user', 'groups', ADMIN_PAGES_REGISTER_USER.getRoutingFull(), register);
 
     all.menuOptions.push(module);
     all.menuOptions.push(costumer);
     all.menuOptions.push(user);
 
-    this.menuGroups.push(all, home, register, config);
+    this.menuGroups.push(home, all, register, config);
     this.menuOptions.push(module, costumer, user);
   }
 
@@ -90,7 +91,7 @@ export class MenuService {
   }
 
   public resetMenuGroupSelected() {
-    this.setMenuGroupSelected(null, false);
+    this.setMenuGroupSelected(this.menuGroups[0], false);
     this.resetMenuOptionSelected();
   }
 
@@ -110,15 +111,16 @@ export class MenuService {
       this.notify.next(resultOption);
       console.log("achou opcao")
     } else {
-      let result: MenuGroup = this.menuGroups.find((group: MenuGroup) => url.search(group.router) > -1);
+      let result: MenuGroup = this.menuGroups.find((group: MenuGroup) => StringUtils.equals(url, group.router));
       if (result != null) {
         this.setMenuGroupSelected(result, navigate);
+        this.setMenuOptionSelected(null, false);
         this.notify.next(result);
         console.log("achou grupo")
       } else {
-        console.log("achou nada")
-        this.resetMenuOptionSelected();
+        console.log("volta pro home")
         this.resetMenuGroupSelected();
+        this.notify.next(this.menuGroups[0]);
       }
     }
   }

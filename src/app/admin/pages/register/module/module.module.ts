@@ -1,3 +1,4 @@
+import { ListModule } from './../../../../components/list/list.module';
 /**
  * Created by Guilherme on 03/04/2017.
  */
@@ -8,7 +9,7 @@ import { ModuleListComponent } from "./module.list.component";
 import {routing} from "./module.routing";
 
 @NgModule({
-  imports:      [ routing ],
+  imports:      [ routing, ListModule ],
   declarations: [ ModuleListComponent, ModuleFormComponent],
   bootstrap:    [ ModuleListComponent ]
 })

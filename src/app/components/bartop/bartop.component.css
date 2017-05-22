@@ -1,40 +1,53 @@
+#contentBarTopLogo {
+    width: 4%;
+    float: left;
+    height: 100%;
+    min-width: 25px;
+    max-width: 78px;
+}
+
+#contentBarTopLogo img {
+    padding: 5%;
+    margin-top: 15%;
+}
+
 #contentBarTop {
-  height: 100%;
-  width: 100%;
-  position: relative;
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
 
 #contentBarTop1 {
-  height: 50%;
-  width: 50%;
-  float: left;
-  position: relative;
+    height: 50%;
+    width: 46%;
+    float: left;
+    position: relative;
 }
 
 #contentBarTop1 menu {
-  float: left;
-  margin: 1px 0px 0px 0px;
-  padding: 1px 1px 1px 1px;
-  width: 100%;
+    float: left;
+    margin: 1% 1% 1% 1%;
+    padding: 1px 1px 1px 1px;
+    width: 99%;
 }
 
 #contentBarTop2 {
-  height: 50%;
-  width: 50%;
-  float: left;
-  position: relative;
+    height: 50%;
+    width: 46%;
+    float: left;
+    position: relative;
 }
 
 #contentBarTop3 {
-  height: 50%;
-  width: 50%;
-  float: right;
-  position: relative;
+    height: 50%;
+    width: 46%;
+    float: left;
+    position: relative;
 }
 
 #contentBarTop4 {
-  height: 50%;
-  width: 50%;
-  float: right;
-  position: relative;
+    height: 50%;
+    width: 46%;
+    float: right;
+    position: relative;
 }

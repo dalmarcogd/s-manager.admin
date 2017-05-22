@@ -6,17 +6,12 @@
   System.config({
     paths: {
       // paths serve as alias
-      'npm:': 'node_modules/',
-      'app1:': 'app/',
+      'npm:': 'node_modules/'
     },
     // map tells the System loader where to look for things
     map: {
       // our app is within the app folder
       'app': 'app',
-
-      'model': 'app1:model',
-      // 'components': 'app/components/',
-      // 'service': 'app/service/*',
 
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -60,10 +55,6 @@
         defaultExtension: 'js'
       },
       'ng2-smart-table': {
-        main: 'index.js',
-        defaultExtension: 'js'
-      },
-      'model': {
         main: 'index.js',
         defaultExtension: 'js'
       }

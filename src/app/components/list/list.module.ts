@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
-import { TableComponent } from './table.component';
+import { ListComponent } from './list.component';
 
 @NgModule({
   imports: [Ng2SmartTableModule],
-  declarations: [TableComponent],
+  declarations: [],
   providers: [],
-  exports: []
+  exports: [Ng2SmartTableModule],
+  bootstrap: []
 })
-export class TableModule { }
+export class ListModule { }

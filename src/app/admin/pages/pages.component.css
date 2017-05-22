@@ -1,32 +1,33 @@
 #barTop {
-  background-color:#ffffff;
-  height: 16%;
-  border-botton: 1px solid lightgray;
+    background-color: #ffffff;
+    height: 10%;
+    border-bottom: 1px solid lightgray;
+    min-height: 95px;
 }
 
 #content {
-  background-color:#f2f2f2;
-  height:84%
+    background-color: #f2f2f2;
+    height: 90%
 }
 
 #contentBody {
-  background-color:transparent;
-  height: 89.9%;
-  padding: 0.2%;
+    background-color: transparent;
+    height: 89.9%;
+    padding: 0.2%;
 }
 
 #contentFooter {
-  background-color:#ffffff;
-  height: 9%;
+    background-color: #ffffff;
+    height: 9%;
 }
 
 #contentBodyTop {
-  border-radius: 2px;
-  background-color:#ffffff;
-  height: 10%;
+    border-radius: 2px;
+    background-color: #ffffff;
+    height: 10%;
 }
 
 #contentBodyCenter {
-  background-color:transparent;
-  height: 90%;
+    background-color: transparent;
+    height: 90%;
 }

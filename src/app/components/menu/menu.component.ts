@@ -33,11 +33,10 @@ export class MenuComponent implements OnInit {
 
   search = (query: string): MenuOption[] => {
     let menuOptionsToSearch: MenuOption[];
-    this.menuGroups.forEach((group) => {
-      if (group === this.menuGroupSelected) {
-          menuOptionsToSearch = group.menuOptions;
-      }
-    });
+    if (!!this.menuGroupSelected) {
+      menuOptionsToSearch = this.menuGroupSelected.menuOptions;
+    }
+
     return this.lookupPolymorphic(query, menuOptionsToSearch);
   }
 
@@ -49,8 +48,9 @@ export class MenuComponent implements OnInit {
     return source.filter((d: MenuOption) => StringUtils.normalize(d.name.toLowerCase()).indexOf(StringUtils.normalize(query.toLowerCase())) > -1);
   }
 
-  lookupMenuOptionSelected(event: EventEmitter<any>) {
+  lookupMenuOptionSelected(event: any) {
     if (event != null) {
+        this.menuOptionSelected = <MenuOption> event;
         this.menuService.setMenuOptionSelected(this.menuOptionSelected, true);
     } else {
         this.menuService.reloadMenuGroupSelected();

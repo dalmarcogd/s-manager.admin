@@ -1,3 +1,4 @@
+import { ADMIN, ADMIN_LOGIN, ADMIN_PAGES, ADMIN_NOT_FOUND } from './../app.routing.mapping';
 /**
  * Created by Guilherme on 03/04/2017.
  */
@@ -7,17 +8,17 @@ import {AuthGuard} from '../service/auth/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'admin',
-    component: AdminComponent,
+    path: ADMIN.getRoutingSimple(),
+    component: AdminComponent, canActivate: [ AuthGuard ], canActivateChild: [ AuthGuard ], 
     children: [
       {
-        path: 'login', loadChildren: 'app/admin/login/login.module#LoginModule'
+        path: ADMIN_LOGIN.getRoutingSimple(), loadChildren: 'app/admin/login/login.module#LoginModule'
       },
       {
-        path: 'pages', loadChildren: 'app/admin/pages/pages.module#PagesModule', canActivate: [ AuthGuard ], canActivateChild: [ AuthGuard ]
+        path: ADMIN_PAGES.getRoutingSimple(), loadChildren: 'app/admin/pages/pages.module#PagesModule'
       },
       {
-        path: 'notfound', loadChildren: 'app/admin/not.found/not.found.module#NotFoundModule'
+        path: ADMIN_NOT_FOUND.getRoutingSimple(), loadChildren: 'app/admin/not.found/not.found.module#NotFoundModule'
       }
     ]
   }
