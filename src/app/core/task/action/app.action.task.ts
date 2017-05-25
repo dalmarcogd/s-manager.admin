@@ -1,9 +1,10 @@
 export enum AppActionType {
-              READING = 0,
-              CHANGING = 1,
-              CREATING = 2,
-              DELETING = 3,
-              REDIRECTING = 4
+              INITIALIZING = 0,
+              READING = 1,
+              CHANGING = 2,
+              CREATING = 3,
+              DELETING = 4,
+              REDIRECTING = 5
             };
 
 export class AppActionTask {

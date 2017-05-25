@@ -1,5 +1,6 @@
 import { Injector, InjectionToken, Type } from "@angular/core";
 
+
 export class ServiceLocator {
     private static injector: Injector;
 

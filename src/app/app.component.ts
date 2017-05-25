@@ -9,7 +9,5 @@ import { ServiceLocator } from "./service/locator/service.locator";
   templateUrl: `./app.component.html`,
 })
 export class AppComponent {
-  constructor(injector: Injector) {
-    ServiceLocator.setInjector(injector);
-  }
+  
 }

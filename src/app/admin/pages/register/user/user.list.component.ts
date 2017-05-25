@@ -15,8 +15,6 @@ import {UserDTO} from '../../../../model/User/User.dto';
 })
 export class UserListComponent extends ListComponent<UserDTO> {
 
-  private source: LocalDataSource = new LocalDataSource();
-
   constructor(private UserCrudService: UserCrudService) {
     super();
   }
@@ -25,9 +23,8 @@ export class UserListComponent extends ListComponent<UserDTO> {
     return this.UserCrudService;
   }
 
-  protected getSettings() : {} {
+  protected getColumns() : {} {
     return {
-      columns: {
           code: {
             title: 'Código'
           },
@@ -43,11 +40,6 @@ export class UserListComponent extends ListComponent<UserDTO> {
           basePackage: {
             title: 'Base package'
           } 
-        }
       };
-  }
-
-  protected getSource() : LocalDataSource {
-    return this.source;   
   }
 }

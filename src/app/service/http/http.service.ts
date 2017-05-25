@@ -1,3 +1,6 @@
+import { ApplicationError } from './../error/application.error';
+import { TokenService } from './../token/token.service';
+import { ServiceLocator } from './../locator/service.locator';
 /**
  * Created by Guilherme on 07/04/2017.
  */
@@ -12,12 +15,24 @@ import 'rxjs/add/observable/throw';
 import { TokenDTO } from '../../model/token/token.dto';
 import { ApplicationErrorHandler } from '../error/application.error.handler';
 import { URL_SERVER } from './http.constants';
-import { TokenService } from '../token/token.service';
 
 @Injectable()
 export class HttpService {
 
-  constructor(private http: Http, private tokenService: TokenService, private applicationErrorHandler: ApplicationErrorHandler) { }
+  constructor() {}
+  
+  private get tokenService() : TokenService {
+    return ServiceLocator.get(TokenService);
+  }
+  
+  private get applicationErrorHandler() : ApplicationErrorHandler {
+    return ServiceLocator.get(ApplicationErrorHandler);
+  }
+
+  private get http() : Http {
+    return ServiceLocator.get(Http);
+  }
+  
 
   /**
    * Realiza um put no endereço especificado.
@@ -33,7 +48,7 @@ export class HttpService {
   /**
    * Realiza um put no endereço especificado.
    */
-  public get(url: string, data: any): Promise<any> {
+  public get(url: string, data?: any): Promise<any> {
     let headers = this.getConfigHeaders();
     let finalURL = this.formatURL(url);
     console.log('Method get: ' + finalURL);

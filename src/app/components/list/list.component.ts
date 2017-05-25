@@ -5,14 +5,33 @@ import {ListService} from './list.service';
 import {BaseComponent} from '../base/base.component';
 import {LocalDataSource} from 'ng2-smart-table';
 
+
 @Component({
   selector: 'list',
   templateUrl: './list.component.html',
   styleUrls: ["./list.component.css"]
 })
  export abstract class ListComponent<T extends BaseDTO> extends BaseComponent {
+    public static HTML_URL= "app/components/list/list.component.html"; 
 
-    protected abstract getListService(): ListService<T>;
+    settings = {
+      add: {
+        addButtonContent: 'Adicionar',
+        createButtonContent: 'Novo',
+        cancelButtonContent: 'Cancelar',
+      },
+      edit: {
+        editButtonContent: 'Editar',
+        saveButtonContent: 'Salvar',
+        cancelButtonContent: 'Cancelar',
+      },
+      delete: {
+        deleteButtonContent: 'Deletar',
+        confirmDelete: true
+      },
+      columns: this.getColumns()
+    };
+    source = new LocalDataSource();
 
     protected getActionInit() : AppActionTask {
       return this.createAction(AppActionType.READING)._execute(() => {
@@ -24,5 +43,11 @@ import {LocalDataSource} from 'ng2-smart-table';
           this.getSource().refresh();
       })
     }
-    protected abstract getSource() : LocalDataSource;
+    
+    protected getSource() : LocalDataSource{
+      return this.source;
+    }
+    
+    protected abstract getColumns(): {};
+    protected abstract getListService(): ListService<T>;
 }

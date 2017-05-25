@@ -7,10 +7,9 @@ import {AppActionTaskFactory} from '../../core/task/action/app.action.task.facto
 export abstract class BaseComponent implements OnInit {
 
   private appTask: AppTask = ServiceLocator.get(AppTask);
-  private appActionTaskFactory: AppActionTaskFactory = ServiceLocator.get(AppActionTaskFactory);
 
   protected createAction(type: AppActionType) : AppActionTask {
-    return this.appActionTaskFactory.create(type);
+    return AppActionTaskFactory.create(type);
   }
 
    ngOnInit(): void {

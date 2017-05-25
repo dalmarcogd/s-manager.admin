@@ -1,3 +1,6 @@
+import { Http } from '@angular/http';
+import { ServiceLocator } from './../locator/service.locator';
+import { HttpService } from './../http/http.service';
 import { Injectable } from '@angular/core';
 import { TokenDTO } from '../../model/token/token.dto';
 /**
@@ -9,6 +12,10 @@ const DATE_TOKEN: string = 'datetoken';
 
 @Injectable()
 export class TokenService {
+
+  public get httpService() : HttpService {
+    return ServiceLocator.get(HttpService);
+  }
 
   /**
    * Atribui o token atual do usuario e a data.
@@ -29,8 +36,15 @@ export class TokenService {
   /**
    * Retorna o token to usuário
    */
-  public isTokenValid(): boolean {
-    return !!localStorage.getItem(TOKEN);
+  public isTokenValid(): Promise<boolean> {
+      let tokenDTO: any = JSON.parse(localStorage.getItem(TOKEN));
+
+      let value: any = !!tokenDTO? tokenDTO.token : null;
+      if (!!value) {
+        return this.httpService.get('/auth', value);
+      }
+      return new Promise(() => false);
+
   }
 
   /**

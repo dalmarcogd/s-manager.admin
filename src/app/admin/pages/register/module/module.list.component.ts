@@ -1,24 +1,29 @@
-import { LocalDataSource } from 'ng2-smart-table';
-import {Component} from "@angular/core";
-import {ListComponent, ListService} from '../../../../components/list';
-import {ModuleCrudService} from '../../../../service/crud/module/module.crud.service';
+import {ListComponent} from '../../../../components/list/list.component';
 import {ModuleDTO} from '../../../../model/module/module.dto';
-import {AppTask} from '../../../../core/task/app.task';
-import {AppActionTaskFactory} from '../../../../core/task/action/app.action.task.factory';
+import {ModuleCrudService} from '../../../../service/crud/module/module.crud.service';
+import {ListService} from '../../../../components/list/list.service';
+import { Component } from '@angular/core';
 
 /**
  * Created by Guilherme on 03/04/2017.
  */
-
 @Component({
   selector: 'module-list',
   styleUrls: ['./module.list.component.css'],
-  templateUrl: '../../../../../components/list/list.component.html'
+  templateUrl: ListComponent.HTML_URL
 })
 export class ModuleListComponent extends ListComponent<ModuleDTO> {
 
-  settings = {
-      columns: {
+  constructor(private moduleCrudService: ModuleCrudService) {
+    super();
+  }
+
+  getListService(): ListService<ModuleDTO> {
+    return this.moduleCrudService;
+  }
+
+  protected getColumns() : {} {
+    return {
         code: {
           title: 'Código'
         },
@@ -34,19 +39,6 @@ export class ModuleListComponent extends ListComponent<ModuleDTO> {
         basePackage: {
           title: 'Base package'
         } 
-      }
-    };
-  source = new LocalDataSource();
-
-  constructor(private moduleCrudService: ModuleCrudService) {
-    super();
-  }
-
-  getListService(): ListService<ModuleDTO> {
-    return this.moduleCrudService;
-  }
-  
-  protected getSource() : LocalDataSource {
-    return this.source; 
+      };
   }
 }

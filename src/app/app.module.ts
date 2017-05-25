@@ -1,3 +1,5 @@
+import { ServiceLocator } from './service/locator/service.locator';
+import { Injector } from '@angular/core';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -14,4 +16,9 @@ import { ServiceModule } from './service/service.module';
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(injector: Injector) {
+    ServiceLocator.setInjector(injector);
+  }
+ }

@@ -13,12 +13,10 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import {AppTask} from './task/app.task';
 import {AppState} from './state/app.state';
-import {AppActionTaskFactory} from './task/action/app.action.task.factory';
 
 const CORE_PROVIDERS = [
   AppState,
-  AppTask,
-  AppActionTaskFactory
+  AppTask
 ]
 
 @NgModule({

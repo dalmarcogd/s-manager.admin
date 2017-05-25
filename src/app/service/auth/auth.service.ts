@@ -41,7 +41,7 @@ export class AuthService extends BaseService {
     );
   }
 
-  isLoggedIn(): boolean {
+  isLoggedIn(): Promise<boolean> {
     return this.tokenService.isTokenValid();
   }
 
