@@ -10,6 +10,7 @@ import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports:      [ routingAdmin, SharedModule],
+  providers:    [],
   exports:      [],
   declarations: [ AdminComponent ],
   bootstrap:    [ AdminComponent ],

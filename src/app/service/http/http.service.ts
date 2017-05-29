@@ -5,7 +5,7 @@ import { ServiceLocator } from './../locator/service.locator';
  * Created by Guilherme on 07/04/2017.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, ErrorHandler } from '@angular/core';
 import { RequestOptions, Http, Response } from '@angular/http';
 import { HttpHeaders } from './http.headers';
 
@@ -26,13 +26,13 @@ export class HttpService {
   }
   
   private get applicationErrorHandler() : ApplicationErrorHandler {
+    console.log(ServiceLocator.get(ApplicationErrorHandler))
     return ServiceLocator.get(ApplicationErrorHandler);
   }
 
   private get http() : Http {
     return ServiceLocator.get(Http);
-  }
-  
+  }  
 
   /**
    * Realiza um put no endereço especificado.
@@ -42,7 +42,7 @@ export class HttpService {
     let finalURL = this.formatURL(url);
     console.log('Method delete: ' + finalURL);
     let options = new RequestOptions({ headers: headers, body: JSON.stringify(data) });
-    return this.http.delete(URL_SERVER + '' + url, options).toPromise().then(this.extractData).catch(this.handleError);
+    return this.http.delete(URL_SERVER + '' + url, options).toPromise().then(this.extractData).catch((e) => this.handleError(e));
   }
 
   /**
@@ -53,7 +53,7 @@ export class HttpService {
     let finalURL = this.formatURL(url);
     console.log('Method get: ' + finalURL);
     let options = new RequestOptions({ headers: headers, body: JSON.stringify(data) });
-    return this.http.get(URL_SERVER + '' + url, options).toPromise().then(this.extractData).catch(this.handleError);
+    return this.http.get(URL_SERVER + '' + url, options).toPromise().then(this.extractData).catch((e) => this.handleError(e));
   }
 
   /**
@@ -64,7 +64,7 @@ export class HttpService {
     let finalURL = this.formatURL(url);
     console.log('Method put: ' + finalURL);
     let options = new RequestOptions({ headers: headers, body: JSON.stringify(data) });
-    return this.http.put(URL_SERVER + '' + url, { name }, options).toPromise().then(this.extractData).catch(this.handleError);
+    return this.http.put(URL_SERVER + '' + url, { name }, options).toPromise().then(this.extractData).catch((e) => this.handleError(e));
   }
 
   /**
@@ -75,7 +75,7 @@ export class HttpService {
     let finalURL = this.formatURL(url);
     console.log('Method post: ' + finalURL);
     let options = new RequestOptions({ headers: headers, body: JSON.stringify(data) });
-    return this.http.post(finalURL, { name }, options).toPromise().then(this.extractData).catch(this.handleError);
+    return this.http.post(finalURL, { name }, options).toPromise().then(this.extractData).catch((e) => this.handleError(e));
   }
 
   private getConfigHeaders(): HttpHeaders {
@@ -97,6 +97,6 @@ export class HttpService {
   }
 
   private handleError(error: Response | any) {
-    return this.applicationErrorHandler.handleError(error);
+    ServiceLocator.get(ApplicationErrorHandler).handleError(error);
   }
 }

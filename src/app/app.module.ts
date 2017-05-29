@@ -1,3 +1,4 @@
+import { AppLoaderService } from './app.loader.service';
 import { ServiceLocator } from './service/locator/service.locator';
 import { Injector } from '@angular/core';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -12,6 +13,7 @@ import { ServiceModule } from './service/service.module';
     ServiceModule.forRoot(),
     routing
   ],
+  providers: [AppLoaderService],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

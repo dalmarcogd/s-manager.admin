@@ -6,7 +6,7 @@ import { Response } from '@angular/http';
 @Injectable()
 export class ApplicationErrorHandler implements ErrorHandler {
 
-   handleError(error: Response | any): ApplicationError {
+   public handleError(error: Response | any): ApplicationError {
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';

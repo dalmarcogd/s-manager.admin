@@ -16,15 +16,15 @@ import {SharedModule} from '../shared/shared.module';
  * Created by Guilherme on 06/04/2017.
  */
 const PROVIDERS = [
+  ApplicationErrorHandler,
+  //{ provide: ErrorHandler, useClass: ApplicationErrorHandler },
   AuthGuard,
   AuthService,
   TokenService,
   HttpService,
   ModuleCrudService,
   UserCrudService,
-  ApplicationErrorHandler,
   MessageService,
-  { provide: ErrorHandler, useClass: ApplicationErrorHandler },
   StorageService,
   MenuService
 ];

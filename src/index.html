@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>S-Manager Admin</title>
     <base href="/">
     <meta charset="UTF-8">
@@ -16,11 +17,14 @@
 
     <script src="systemjs.config.js"></script>
     <script>
-      System.import('main.js').catch(function(err){ console.error(err); });
+        System.import('main.js').catch(function(err) {
+            console.error(err);
+        });
     </script>
-  </head>
+</head>
 
-  <body>
-    <app-admin>Loading AppComponent content here ...</app-admin>
-  </body>
+<body>
+    <app-admin></app-admin>
+</body>
+
 </html>

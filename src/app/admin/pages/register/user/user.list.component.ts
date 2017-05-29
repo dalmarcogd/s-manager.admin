@@ -2,7 +2,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import {Component} from "@angular/core";
 import {ListComponent, ListService} from '../../../../components/list';
 import {UserCrudService} from '../../../../service/crud/user/user.crud.service';
-import {UserDTO} from '../../../../model/User/User.dto';
+import {UserDTO} from '../../../../model/user/user.dto';
 
 /**
  * Created by Guilherme on 03/04/2017.

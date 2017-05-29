@@ -41,10 +41,10 @@ export class TokenService {
 
       let value: any = !!tokenDTO? tokenDTO.token : null;
       if (!!value) {
-        return this.httpService.get('/auth', value);
+        console.log("Valiando: "+value);
+        return this.httpService.put('/auth', new ValidToken(value));
       }
       return new Promise(() => false);
-
   }
 
   /**
@@ -61,3 +61,11 @@ export class TokenService {
     return JSON.parse(localStorage.getItem(DATE_TOKEN));
   }
 }
+
+ class ValidToken {
+     private token: String;
+
+     constructor(token: String) {
+       this.token = token;
+     }
+  }
