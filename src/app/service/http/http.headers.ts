@@ -9,9 +9,8 @@ export class HttpHeaders extends Headers {
     super();
     this.append("Content-Type", "application/json");
     this.append("Accept", "application/json");
-    //let token: any = authService.getAuth().token;
-    //if (!!token && !String.isNullOrWhiteSpace(token.value)) {
-    //this.append(configHelper.getAppConfig().auth.token, token.value);
-    //}
+    this.append('Access-Control-Allow-Headers', 'Authorization');
+    //this.append('Access-Control-Allow-Methods', '*');
+    //this.append('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type');
   }
 }

@@ -36,11 +36,11 @@ import {LocalDataSource} from 'ng2-smart-table';
     protected getActionInit() : AppActionTask {
       return this.createAction(AppActionType.READING)._execute(() => {
           this.getListService().read().then((values: Array<T>) => {
-              values.forEach((t: T) => {
-                this.getSource().add(t);
-              })
+              if (values instanceof Array) {
+                values.forEach((t: T) => this.getSource().add(t))
+                this.getSource().refresh();
+              }
           });
-          this.getSource().refresh();
       })
     }
     
