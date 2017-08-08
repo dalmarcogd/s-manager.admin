@@ -26,15 +26,15 @@ export class AuthService extends BaseService {
    * Efetua a autenticação no servidor, com os parametros recebidos.
    */
   login(username: string, password: string): Promise<Boolean> {
-    return this.httpService.post('/auth', new AuthCredentials(username, password)).then((data) => {
+    return this.httpService.post('/oauth/token', {data : new AuthCredentials(username, password), params: new Map([["grantType", "password"], ["username", username], ["password", password], ["clientId", "smanager_admin_id"]])}).then((data) => {
         console.log(data);
         if (data instanceof Object) {
           this.tokenService.setToken(data, new Date());
-          this.router.navigate(['admin/pages']);
+          //this.router.navigate(['admin/pages']);
           return true;
         } else {
           this.tokenService.resetToken();
-          this.router.navigate(['admin/login']);
+          //this.router.navigate(['admin/login']);
           return false;
         }
       }

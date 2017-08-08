@@ -1,3 +1,4 @@
+import { HttpConfigMethod } from './http.config.method';
 import { ApplicationError } from './../error/application.error';
 import { TokenService } from './../token/token.service';
 import { ServiceLocator } from './../locator/service.locator';
@@ -16,17 +17,17 @@ import { TokenDTO } from '../../model/token/token.dto';
 import { ApplicationErrorHandler } from '../error/application.error.handler';
 import { URL_SERVER } from './http.constants';
 
+/**
+ * Serviço que implementa métodos de comunicação Http.
+ */
 @Injectable()
 export class HttpService {
 
-  constructor() {}
-  
   private get tokenService() : TokenService {
     return ServiceLocator.get(TokenService);
   }
   
   private get applicationErrorHandler() : ApplicationErrorHandler {
-    console.log(ServiceLocator.get(ApplicationErrorHandler))
     return ServiceLocator.get(ApplicationErrorHandler);
   }
 
@@ -37,45 +38,58 @@ export class HttpService {
   /**
    * Realiza um put no endereço especificado.
    */
-  public delete(url: string, data: any): Promise<any> {
+  public delete(url: string, config?: HttpConfigMethod): Promise<any> {
     let headers = this.getConfigHeaders();
     let finalURL = this.formatURL(url);
     console.log('Method delete: ' + finalURL);
-    let options = new RequestOptions({ headers: headers, body: JSON.stringify(data) });
+    let options = this.buildRequestOptions(headers, config);
     return this.http.delete(URL_SERVER + '' + url, options).toPromise().then(this.extractData).catch((e) => this.handleError(e));
   }
 
   /**
    * Realiza um put no endereço especificado.
    */
-  public get(url: string, data?: any): Promise<any> {
+  public get(url: string, config?: HttpConfigMethod): Promise<any> {
     let headers = this.getConfigHeaders();
     let finalURL = this.formatURL(url);
     console.log('Method get: ' + finalURL);
-    let options = new RequestOptions({ headers: headers, body: JSON.stringify(data) });
+    let options = this.buildRequestOptions(headers, config);
     return this.http.get(URL_SERVER + '' + url, options).toPromise().then(this.extractData).catch((e) => this.handleError(e));
   }
 
   /**
    * Realiza um put no endereço especificado.
    */
-  public put(url: string, data: any): Promise<any> {
+  public put(url: string, config?: HttpConfigMethod): Promise<any> {
     let headers = this.getConfigHeaders();
     let finalURL = this.formatURL(url);
     console.log('Method put: ' + finalURL);
-    let options = new RequestOptions({ headers: headers, body: JSON.stringify(data) });
+    let options = this.buildRequestOptions(headers, config);    
     return this.http.put(URL_SERVER + '' + url, { name }, options).toPromise().then(this.extractData).catch((e) => this.handleError(e));
   }
 
   /**
    * Realiza um post no endereço especificado.
    */
-  public post(url: string, data: any): Promise<any> {
+  public post(url: string, config?: HttpConfigMethod): Promise<any> {
     let headers = this.getConfigHeaders();
     let finalURL = this.formatURL(url);
     console.log('Method post: ' + finalURL);
-    let options = new RequestOptions({ headers: headers, body: JSON.stringify(data) });
+    let options = this.buildRequestOptions(headers, config);
     return this.http.post(finalURL, { name }, options).toPromise().then(this.extractData).catch((e) => this.handleError(e));
+  }
+
+  /**
+   * Método para criação padronizada do RequestOptions
+   */
+  private buildRequestOptions(headers: HttpHeaders, config?: HttpConfigMethod) : RequestOptions {
+    let options = new RequestOptions({headers: headers, body: JSON.stringify(config.data), params: new URLSearchParams()});
+    if(!!config.params) {
+      config.params.forEach((value: any, key: string) => {
+        options.params.set(key, value);
+      }); 
+    }
+    return options
   }
 
   private getConfigHeaders(): HttpHeaders {

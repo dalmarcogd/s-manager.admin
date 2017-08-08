@@ -20,14 +20,14 @@ export class MenuService {
 
   constructor(private router: Router, private storageService: StorageService) {
     // Grupos
-    let home: MenuGroup = new MenuGroup('Home', 'home', 'home', ADMIN_PAGES_HOME.getRoutingFull());
-    let all: MenuGroup = new MenuGroup('Todos', 'all', 'groups', ADMIN_PAGES_ALL.getRoutingFull());
-    let register: MenuGroup = new MenuGroup('Cadastro', 'register', 'user', ADMIN_PAGES_REGISTER.getRoutingFull());
-    let config: MenuGroup = new MenuGroup('Configuração', 'configuration','lead', ADMIN_PAGES_CONFIGURATION.getRoutingFull());
+    let home: MenuGroup = new MenuGroup('Home', 'home', 'home', ADMIN_PAGES_HOME.routingFull);
+    let all: MenuGroup = new MenuGroup('Todos', 'all', 'groups', ADMIN_PAGES_ALL.routingFull);
+    let register: MenuGroup = new MenuGroup('Cadastro', 'register', 'user', ADMIN_PAGES_REGISTER.routingFull);
+    let config: MenuGroup = new MenuGroup('Configuração', 'configuration','lead', ADMIN_PAGES_CONFIGURATION.routingFull);
     // Opções
-    let module: MenuOption = new MenuOption('Módulos', 'module', 'groups', ADMIN_PAGES_REGISTER_MODULE.getRoutingFull(), register);
-    let costumer: MenuOption = new MenuOption('Clientes', 'costumer', 'groups', ADMIN_PAGES_REGISTER_COSTUMER.getRoutingFull(), register);
-    let user: MenuOption = new MenuOption('Usuários', 'user', 'groups', ADMIN_PAGES_REGISTER_USER.getRoutingFull(), register);
+    let module: MenuOption = new MenuOption('Módulos', 'module', 'groups', ADMIN_PAGES_REGISTER_MODULE.routingFull, register);
+    let costumer: MenuOption = new MenuOption('Clientes', 'costumer', 'groups', ADMIN_PAGES_REGISTER_COSTUMER.routingFull, register);
+    let user: MenuOption = new MenuOption('Usuários', 'user', 'groups', ADMIN_PAGES_REGISTER_USER.routingFull, register);
 
     all.menuOptions.push(module);
     all.menuOptions.push(costumer);

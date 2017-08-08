@@ -42,7 +42,7 @@ export class TokenService {
       let value: any = !!tokenDTO? tokenDTO.token : null;
       if (!!value) {
         console.log("Valiando: "+value);
-        return this.httpService.put('/auth', new ValidToken(value));
+        return this.httpService.put('/auth', {data: new ValidToken(value)});
       }
       return new Promise(() => false);
   }

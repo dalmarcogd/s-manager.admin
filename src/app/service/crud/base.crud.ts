@@ -12,28 +12,28 @@ export abstract class BaseCrudService<T extends BaseDTO> extends BaseService imp
    * Retorna o dado especificado ou os dados do backend.
    */
   public read(id?: Number) : Promise<Array<T>> {
-    return this.httpService.get(this.getPatch(), id).then((data) => this.extract(data));
+    return this.httpService.get(this.getPatch(), {data: id}).then((data) => this.extract(data));
   }
 
   /**
    * Executa a criação do dado no backend.
    */
   public create(data: T) : Promise<T> {
-    return this.httpService.post(this.getPatch(), data).then((data) => this.extract(data));
+    return this.httpService.post(this.getPatch(), {data: data}).then((data) => this.extract(data));
   }
 
   /**
    * Executa a atualização dos dados no backend.
    */
   public update(data: T) : Promise<T> {
-    return this.httpService.put(this.getPatch(), data).then((data) => this.extract(data));
+    return this.httpService.put(this.getPatch(), {data: data}).then((data) => this.extract(data));
   }
 
   /**
    * Executa a atualização dos dados no backend.
    */
   public deleteById(id: Number) : Promise<T> {
-    return this.httpService.delete(this.getPatch(), id).then((data) => this.extract(data));
+    return this.httpService.delete(this.getPatch(), {data: id}).then((data) => this.extract(data));
   }
 
   /**
