@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Introduction
 
 [![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
@@ -704,3 +705,7 @@ You can follow the [Angular change log here](https://github.com/angular/angular/
 # License
 
 MIT
+=======
+# S-Manager Admin
+Painel administrativo de gestão da aplicação S-Manager, aplicação web desenvolvida em angular2.
+>>>>>>> 9849247aeb088f697d75a1f8a0ec762d8c2919a2
