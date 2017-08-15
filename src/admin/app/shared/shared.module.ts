@@ -1,27 +1,25 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { NameListService } from './name-list/name-list.service';
-
 /**
- * Do not specify providers for modules that might be imported by a lazy loaded module.
+ *
  */
+import { CommonModule } from '@angular/common';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {NglModule} from 'ng-lightning';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
-  declarations: [ToolbarComponent, NavbarComponent],
-  exports: [ToolbarComponent, NavbarComponent,
-    CommonModule, FormsModule, RouterModule]
+  imports: [
+    CommonModule,
+    NglModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  exports: [
+    CommonModule,
+    NglModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: SharedModule,
-      providers: [NameListService]
-    };
-  }
 }

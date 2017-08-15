@@ -1,23 +1,31 @@
-import { NgModule } from '@angular/core';
+import { ServiceLocator } from './service/locator/service.locator';
+import { Injector } from '@angular/core';
+import { AppLoaderService } from './app.loader.service';
+import { routing } from './app.routing';
+import { ServiceModule } from './service/service.module';
+import { CoreModule } from './core/core.module';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AboutModule } from './about/about.module';
-import { HomeModule } from './home/home.module';
-import { SharedModule } from './shared/shared.module';
-
-
 @NgModule({
-  imports: [BrowserModule, HttpModule, AppRoutingModule, AboutModule, HomeModule, SharedModule.forRoot()],
+  imports: [
+    CoreModule.forRoot(),
+    ServiceModule.forRoot(),
+    routing
+  ],
+  providers: [AppLoaderService],
   declarations: [AppComponent],
-  providers: [{
-    provide: APP_BASE_HREF,
-    useValue: '<%= APP_BASE %>'
-  }],
-  bootstrap: [AppComponent]
-
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(injector: Injector) {
+    ServiceLocator.setInjector(injector);
+  }
+ }
+

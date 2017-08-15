@@ -434,6 +434,13 @@ export class SeedConfig {
         'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
       '@angular/router/testing': 'node_modules/@angular/router/bundles/router-testing.umd.js',
 
+      'tether': 'node_modules/tether/dist/js/tether.min.js',
+      'ng-lightning': 'node_modules/ng-lightning/bundles/ng-lightning.umd.js',
+      'ng2-smart-table': 'npm:ng2-smart-table',
+      'ng2-completer': 'npm:ng2-completer',
+      'lodash': 'npm:lodash',
+      'traceur': 'npm:traceur/bin/traceur.js',
+
       'app/': `${this.APP_BASE}app/`,
       // For test config
       'dist/dev/': '/base/dist/dev/',
@@ -526,6 +533,18 @@ export class SeedConfig {
       'rxjs': {
         main: 'Rx.js',
         defaultExtension: 'js'
+      },
+      'lodash': {
+          main: 'index.js',
+          defaultExtension: 'js'
+      },
+      'ng2-completer': {
+          main: 'index.js',
+          defaultExtension: 'js'
+      },
+      'ng2-smart-table': {
+          main: 'index.js',
+          defaultExtension: 'js'
       }
     }
   };

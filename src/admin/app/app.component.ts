@@ -1,18 +1,47 @@
-import { Component } from '@angular/core';
-import { Config } from './shared/config/env.config';
-import './operators';
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, Event as RouterEvent} from '@angular/router'
+import { AppLoaderService } from './app.loader.service';
+import { ServiceModule } from './service/service.module';
+import { Injector, Renderer, NgZone } from '@angular/core';
+import {Component} from '@angular/core'
+import { ServiceLocator } from "./service/locator/service.locator";
 
-/**
- * This class represents the main application component.
- */
 @Component({
-  moduleId: module.id,
-  selector: 'sd-app',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css'],
+    moduleId: module.id,
+    selector: 'app-admin',
+    styleUrls: ['./app.component.css'],
+    templateUrl: './app.component.html'
 })
 export class AppComponent {
-  constructor() {
-    console.log('Environment config', Config);
-  }
+    
+    showLoader: boolean = true;
+
+    constructor(private router: Router, private ngZone: NgZone, private renderer: Renderer, private loaderService: AppLoaderService) {
+        router.events.subscribe((event: RouterEvent) => this._navigationInterceptor(event));
+    }
+
+    // Shows and hides the loading spinner during RouterEvent changes
+    private _navigationInterceptor(event: RouterEvent): void {
+        if (event instanceof NavigationStart) {
+            this.ngZone.runOutsideAngular(() => this.showLoader = true);
+        }
+        if (event instanceof NavigationEnd) {
+            this._hideSpinner();
+        }
+        if (event instanceof NavigationCancel) {
+            this._hideSpinner();
+        }
+        if (event instanceof NavigationError) {
+            this._hideSpinner();
+        }
+    }
+
+    private _hideSpinner(): void {
+        this.ngZone.runOutsideAngular(() => this.showLoader = false);
+    }
+
+    ngOnInit() {
+        this.loaderService.status.subscribe((val: boolean) => {
+            this.showLoader = val;
+        });
+    }
 }
