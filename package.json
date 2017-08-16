@@ -152,9 +152,11 @@
     "@angular/service-worker": "^1.0.0-beta.16",
     "@salesforce-ux/design-system": "^2.3.1",
     "core-js": "^2.4.1",
+    "font-awesome": "^4.7.0",
     "intl": "^1.2.5",
     "ng-lightning": "^1.3.0",
     "ng2-smart-table": "^1.2.1",
+    "ngx-bootstrap": "^1.8.1",
     "rxjs": "^5.4.2",
     "systemjs": "0.20.14",
     "zone.js": "0.8.12"

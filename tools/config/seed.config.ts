@@ -428,18 +428,16 @@ export class SeedConfig {
       '@angular/compiler/testing': 'node_modules/@angular/compiler/bundles/compiler-testing.umd.js',
       '@angular/core/testing': 'node_modules/@angular/core/bundles/core-testing.umd.js',
       '@angular/http/testing': 'node_modules/@angular/http/bundles/http-testing.umd.js',
-      '@angular/platform-browser/testing':
-        'node_modules/@angular/platform-browser/bundles/platform-browser-testing.umd.js',
-      '@angular/platform-browser-dynamic/testing':
-        'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
+      '@angular/platform-browser/testing': 'node_modules/@angular/platform-browser/bundles/platform-browser-testing.umd.js',
+      '@angular/platform-browser-dynamic/testing': 'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
       '@angular/router/testing': 'node_modules/@angular/router/bundles/router-testing.umd.js',
 
       'tether': 'node_modules/tether/dist/js/tether.min.js',
       'ng-lightning': 'node_modules/ng-lightning/bundles/ng-lightning.umd.js',
-      'ng2-smart-table': 'npm:ng2-smart-table',
-      'ng2-completer': 'npm:ng2-completer',
-      'lodash': 'npm:lodash',
-      'traceur': 'npm:traceur/bin/traceur.js',
+      'ng2-smart-table': 'node_modules:ng2-smart-table',
+      'ng2-completer': 'node_modules/ng2-completer/ng2-completer.umd.js',
+      'lodash': 'node_modules:lodash',
+      'traceur': 'node_modules:traceur/bin/traceur.js',
 
       'app/': `${this.APP_BASE}app/`,
       // For test config
