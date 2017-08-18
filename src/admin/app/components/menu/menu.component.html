@@ -1,18 +1,16 @@
-<ngl-lookup [lookup]="search" [(pick)]='menuOptionSelected' [placeholder]="'O que você procura?'" [noResultsText]="'Nenhuma opção encontrada...'" (pickChange)="lookupMenuOptionSelected($event)">
-    <div nglLookupHeader class="slds-text-body--small">Opções...</div>
-    <!--<template nglLookupItem let-ctx>
-        <div class="slds-media__body">
-          <div class="slds-lookup__result-text">{{item}}</div>
-          <span class="slds-lookup__result-meta slds-text-body--small">Teste: {{item == null? "nada" : "tem"}}</span>
-        </div>
-    </template>-->
-    <span nglPolymorphicLabel>
-      <svg nglIconCategory="standard" [nglIcon]="menuGroupSelected.icon" [ngClass]="'slds-icon-standard-' + menuGroupSelected.icon" class="slds-icon slds-icon--small"></svg>
-    </span>
-    <template nglPolymorphicItem [scopes]="menuGroups" (scopeChange)="menuGroupSelected = $event; lookupMenuGroupSelected($event)" let-item>
-      <p class="slds-truncate">
-        <svg nglIconCategory="standard" [nglIcon]="item.icon" [ngClass]="'slds-icon-standard-' + item.icon" class="slds-icon slds-icon--small slds-m-right--small"></svg>
-        {{ item.name }}
-      </p>
+<div id="menuComponent">
+    <ng-select [allowClear]="true" [items]="menuOptions" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" (typed)="search($event)" placeholder="O que você procura?">
+    </ng-select>
+</div>
+<!-- <div id="menuComponent">
+        <pre>{{value.text}}</pre>
+    <ngl-lookup [lookup]="search" [(pick)]='menuOptionSelected' [placeholder]="'O que você procura?'" [noResultsText]="'Nenhuma opção encontrada...'" (pickChange)="">
+        <div nglLookupHeader class="slds-text-body--small">Opções...</div>
+        <span nglPolymorphicLabel>
+          <i class={{menuGroupSelected.icon}} aria-hidden="true" fa-3x></i>
+        </span>
+        <template nglPolymorphicItem [scopes]="menuGroups" (scopeChange)="menuGroupSelected = $event; lookupMenuGroupSelected($event)" let-item>
+          <p class="slds-truncate"><i class={{item.icon}} aria-hidden="true" fa-3x></i> - {{ item.name }}</p>
     </template>
-</ngl-lookup>
+    </ngl-lookup>
+</div>-->

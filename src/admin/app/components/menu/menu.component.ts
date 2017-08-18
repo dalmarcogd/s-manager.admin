@@ -9,7 +9,7 @@ import {Subject} from 'rxjs/Subject';
   moduleId: module.id,
   selector: 'menu',
   styleUrls: ['./menu.component.css'],
-  templateUrl: `./menu.component.html`,
+  templateUrl: './menu.component.html',
 })
 export class MenuComponent implements OnInit {
 
@@ -30,23 +30,20 @@ export class MenuComponent implements OnInit {
         this.menuOptionSelected = null;
       }
     });
+    this.menuGroupSelected = this.menuService.getMenuGroups()[1];
   }
 
-  search = (query: string): MenuOption[] => {
+  search(value:any): MenuOption[]  {
     let menuOptionsToSearch: MenuOption[];
     if (!!this.menuGroupSelected) {
       menuOptionsToSearch = this.menuGroupSelected.menuOptions;
     }
-
-    return this.lookupPolymorphic(query, menuOptionsToSearch);
-  }
-
-  lookupPolymorphic = (query: string, source = this.menuOptions): MenuOption[] => {
-    if (!query) {
-      return source;
+    console.log(menuOptionsToSearch)
+    if (!value) {
+      return menuOptionsToSearch;
     }
 
-    return source.filter((d: MenuOption) => StringUtils.normalize(d.name.toLowerCase()).indexOf(StringUtils.normalize(query.toLowerCase())) > -1);
+    return menuOptionsToSearch.filter((d: MenuOption) => StringUtils.normalize(d.name.toLowerCase()).indexOf(StringUtils.normalize(query.toLowerCase())) > -1)
   }
 
   lookupMenuOptionSelected(event: any) {
@@ -69,5 +66,25 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
    this.menuOptionSelected = this.menuService.getMenuOptionSelected();
    this.menuGroupSelected = this.menuService.getMenuGroupSelected();
+  }
+
+  public selected(value:any):void {
+    console.log(value);
+    if (value != null) {
+      this.menuOptionSelected = <MenuOption> value;
+      this.menuService.setMenuOptionSelected(this.menuOptionSelected, true);
+    } else {
+      this.menuService.reloadMenuGroupSelected();
+    }
+  }
+ 
+  public removed(value:any):void {
+    console.log(value);
+    this.menuOptionSelected = null;
+  }
+ 
+  public refreshValue(value:any):void {
+    console.log(value);
+    this.menuOptionSelected = value;
   }
 }

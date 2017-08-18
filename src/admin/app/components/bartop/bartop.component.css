@@ -18,36 +18,29 @@
 }
 
 #contentBarTop1 {
-    height: 50%;
-    width: 46%;
+    height: 100%;
+    width: 33.33%;
     float: left;
     position: relative;
 }
 
-#contentBarTop1 menu {
+#contentBarTop2 {
+    height: 100%;
+    width: 33.33%;
+    float: left;
+    position: relative;
+}
+
+#contentBarTop2 menu {
     float: left;
     margin: 1% 1% 1% 1%;
     padding: 1px 1px 1px 1px;
     width: 99%;
 }
 
-#contentBarTop2 {
-    height: 50%;
-    width: 46%;
-    float: left;
-    position: relative;
-}
-
 #contentBarTop3 {
-    height: 50%;
-    width: 46%;
+    height: 100%;
+    width: 33.33%;
     float: left;
-    position: relative;
-}
-
-#contentBarTop4 {
-    height: 50%;
-    width: 46%;
-    float: right;
     position: relative;
 }

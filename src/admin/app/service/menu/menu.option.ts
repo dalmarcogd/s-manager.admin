@@ -6,6 +6,7 @@ export class MenuOption {
     icon: string;
     router: string;
     keyMenuGroup: string;
+    text: string;
 
     constructor(name: string, key: string, icon: string, router: string, menuGroup: MenuGroup) {
       this.name = name;
@@ -14,6 +15,7 @@ export class MenuOption {
       this.router = router;
       this.keyMenuGroup = menuGroup.key;
       menuGroup.menuOptions.push(this);
+      this.text = name;
     }
 
     toString() {

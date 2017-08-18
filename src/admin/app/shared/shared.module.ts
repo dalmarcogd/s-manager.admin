@@ -1,6 +1,4 @@
-/**
- *
- */
+import { SelectModule } from 'ng2-select';
 import { CommonModule } from '@angular/common';
 import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {NglModule} from 'ng-lightning';
@@ -11,13 +9,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     NglModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SelectModule
   ],
   exports: [
     CommonModule,
     NglModule,
     FormsModule,
     ReactiveFormsModule,
+    SelectModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
