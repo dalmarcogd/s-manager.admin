@@ -1,19 +1,19 @@
 import {MenuGroup} from './menu.group';
 
 export class MenuOption {
+    id: string;
     name: string;
-    key: string;
     icon: string;
     router: string;
     keyMenuGroup: string;
     text: string;
 
-    constructor(name: string, key: string, icon: string, router: string, menuGroup: MenuGroup) {
+    constructor(name: string, id: string, icon: string, router: string, menuGroup: MenuGroup) {
       this.name = name;
-      this.key = key;
+      this.id = id;
       this.icon = icon;
       this.router = router;
-      this.keyMenuGroup = menuGroup.key;
+      this.keyMenuGroup = menuGroup.id;
       menuGroup.menuOptions.push(this);
       this.text = name;
     }

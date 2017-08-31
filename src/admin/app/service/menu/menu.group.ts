@@ -4,14 +4,14 @@ import { MenuOption} from './menu.option';
 export class MenuGroup {
 
   name: string;
-  key: string;
+  id: string;
   icon: string;
   router: string;
   menuOptions: Array<MenuOption> = new Array<MenuOption>();
 
-  constructor(name: string, key: string, icon: string, router: string) {
+  constructor(name: string, id: string, icon: string, router: string) {
     this.name = name;
-    this.key = key;
+    this.id = id;
     this.icon = icon;
     this.router = router;
   }

@@ -1,16 +1,14 @@
 <div id="menuComponent">
-    <ng-select [allowClear]="true" [items]="menuOptions" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" (typed)="search($event)" placeholder="O que você procura?">
+    <div class="col">
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item">Action - 1</button>
+                <button class="dropdown-item">Another Action</button>
+                <button class="dropdown-item">Something else is here</button>
+            </div>
+        </div>
+    </div>
+    <ng-select [allowClear]="true" [items]="menuOptions" [disabled]="false" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" (typed)="search($event)" placeholder="O que você procura?">
     </ng-select>
 </div>
-<!-- <div id="menuComponent">
-        <pre>{{value.text}}</pre>
-    <ngl-lookup [lookup]="search" [(pick)]='menuOptionSelected' [placeholder]="'O que você procura?'" [noResultsText]="'Nenhuma opção encontrada...'" (pickChange)="">
-        <div nglLookupHeader class="slds-text-body--small">Opções...</div>
-        <span nglPolymorphicLabel>
-          <i class={{menuGroupSelected.icon}} aria-hidden="true" fa-3x></i>
-        </span>
-        <template nglPolymorphicItem [scopes]="menuGroups" (scopeChange)="menuGroupSelected = $event; lookupMenuGroupSelected($event)" let-item>
-          <p class="slds-truncate"><i class={{item.icon}} aria-hidden="true" fa-3x></i> - {{ item.name }}</p>
-    </template>
-    </ngl-lookup>
-</div>-->

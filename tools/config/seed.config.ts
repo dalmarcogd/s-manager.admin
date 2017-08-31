@@ -439,6 +439,7 @@ export class SeedConfig {
       'ng2-select': 'node_modules/ng2-select/bundles/ng2-select.umd.js',
       'lodash': 'node_modules:lodash',
       'traceur': 'node_modules:traceur/bin/traceur.js',
+      'ngx-bootstrap' : 'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js',
 
       'app/': `${this.APP_BASE}app/`,
       // For test config
@@ -547,6 +548,10 @@ export class SeedConfig {
       },
       'ng2-select': {
         main: 'ng2-select.js',
+        defaultExtension: 'js'
+      },
+      'ngx-bootstrap': {
+        main: 'ngx-bootstrap.js',
         defaultExtension: 'js'
       }
     }

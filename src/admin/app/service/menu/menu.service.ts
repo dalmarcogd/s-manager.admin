@@ -13,9 +13,9 @@ const KEY_MENU_GROUP_SELECTED: string = "KEY_MENU_GROUP_SELECTED";
 @Injectable()
 export class MenuService {
 
-  private menuGroups: Array<MenuGroup> = [];
-  private menuOptions: Array<MenuOption> = [];
-
+  private mapMenuGroups: Map<string, MenuGroup> = new Map();
+  private mapMenuOptions: Map<string, MenuOption> = new Map();
+  
   private notify: Subject<any> = new Subject<any>();
 
   constructor(private router: Router, private storageService: StorageService) {
@@ -33,16 +33,22 @@ export class MenuService {
     all.menuOptions.push(costumer);
     all.menuOptions.push(user);
 
-    this.menuGroups.push(home, all, register, config);
-    this.menuOptions.push(module, costumer, user);
+    this.mapMenuGroups.set(home.id, home);
+    this.mapMenuGroups.set(all.id, all);
+    this.mapMenuGroups.set(register.id, register);
+    this.mapMenuGroups.set(config.id, config);
+
+    this.mapMenuOptions.set(module.id, module);
+    this.mapMenuOptions.set(costumer.id, costumer);
+    this.mapMenuOptions.set(user.id, user);
   }
 
-  public getMenuOptions() : Array<MenuOption> {
-    return this.menuOptions;
+  public getMenuOptions() : Map<string, MenuOption> {
+    return this.mapMenuOptions;
   }
 
-  public getMenuGroups() : Array<MenuGroup> {
-    return this.menuGroups;
+  public getMenuGroups() : Map<string, MenuGroup> {
+    return this.mapMenuGroups;
   }
 
   public getMenuOptionSelected() : MenuOption {
@@ -70,7 +76,7 @@ export class MenuService {
       this.router.navigateByUrl(menuGroup.router);
       return menuGroup;
     }
-    let group: MenuGroup = this.menuGroups[0];
+    let group: MenuGroup = this.mapMenuGroups.values().next().value;
     this.setMenuGroupSelected(group, true);
     return group;
   }
@@ -91,7 +97,7 @@ export class MenuService {
   }
 
   public resetMenuGroupSelected() {
-    this.setMenuGroupSelected(this.menuGroups[0], false);
+    this.setMenuGroupSelected(this.mapMenuGroups.values().next().value, false);
     this.resetMenuOptionSelected();
   }
 
@@ -105,13 +111,23 @@ export class MenuService {
   }
 
   public setMenuUrl(url: string, navigate?: boolean) {
-    let resultOption: MenuOption = this.menuOptions.find((option: MenuOption) => StringUtils.equals(url, option.router));
+    let resultOption: MenuOption = null;
+    this.mapMenuOptions.forEach((value: MenuOption, key: string) => { 
+      if (StringUtils.equals(url, value.router)){
+        resultOption = value;
+      }
+    });
     if (resultOption != null) {
       this.setMenuOptionSelected(resultOption, navigate);
       this.notify.next(resultOption);
       console.log("achou opcao")
     } else {
-      let result: MenuGroup = this.menuGroups.find((group: MenuGroup) => StringUtils.equals(url, group.router));
+      let result: MenuGroup = null;
+      this.mapMenuGroups.forEach((value: MenuGroup, key: string) => { 
+        if (StringUtils.equals(url, value.router)){
+          result = value;
+        }
+      });
       if (result != null) {
         this.setMenuGroupSelected(result, navigate);
         this.setMenuOptionSelected(null, false);
@@ -120,7 +136,7 @@ export class MenuService {
       } else {
         console.log("volta pro home")
         this.resetMenuGroupSelected();
-        this.notify.next(this.menuGroups[0]);
+        this.notify.next(this.mapMenuGroups.values().next().value);
       }
     }
   }

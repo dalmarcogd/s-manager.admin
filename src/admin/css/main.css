@@ -1,7 +1,6 @@
-@import "../node_modules/@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.min.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "../node_modules/font-awesome/css/font-awesome.min.css";
-@import "./ng2-select.css";
+@import "ng2-select.css";
 html {
     height: 100%;
 }

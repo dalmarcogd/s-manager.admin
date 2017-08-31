@@ -13,15 +13,17 @@ import {Subject} from 'rxjs/Subject';
 })
 export class MenuComponent implements OnInit {
 
-  menuOptions: MenuOption[];
+  public menuOptions: Array<MenuOption> = [];
   menuGroups: MenuGroup[];
+  private mapMenuOptions: Map<string, MenuOption> = new Map();
+  private mapMenuGroups: Map<string, MenuGroup> = new Map();
 
   menuGroupSelected: MenuGroup;
   menuOptionSelected: MenuOption;
 
   constructor(private menuService: MenuService) {
-    this.menuOptions = this.menuService.getMenuOptions();
-    this.menuGroups = this.menuService.getMenuGroups();
+    this.mapMenuOptions = this.menuService.getMenuOptions();
+    this.mapMenuGroups = this.menuService.getMenuGroups();
     this.menuService.notifyComponent((value: any) => {
       if (value instanceof MenuOption) {
         this.menuOptionSelected = value;
@@ -30,28 +32,15 @@ export class MenuComponent implements OnInit {
         this.menuOptionSelected = null;
       }
     });
-    this.menuGroupSelected = this.menuService.getMenuGroups()[1];
+    this.menuGroupSelected = this.menuService.getMenuGroups().get("all");
+    this.menuOptions = this.menuGroupSelected.menuOptions;
+    console.log(this.menuOptions)
   }
 
-  search(value:any): MenuOption[]  {
-    let menuOptionsToSearch: MenuOption[];
-    if (!!this.menuGroupSelected) {
+  search(value:any) : void {
+    let menuOptionsToSearch = this.menuGroupSelected.menuOptions;
+    if (this.menuGroupSelected != undefined) {
       menuOptionsToSearch = this.menuGroupSelected.menuOptions;
-    }
-    console.log(menuOptionsToSearch)
-    if (!value) {
-      return menuOptionsToSearch;
-    }
-
-    return menuOptionsToSearch.filter((d: MenuOption) => StringUtils.normalize(d.name.toLowerCase()).indexOf(StringUtils.normalize(query.toLowerCase())) > -1)
-  }
-
-  lookupMenuOptionSelected(event: any) {
-    if (event != null) {
-        this.menuOptionSelected = <MenuOption> event;
-        this.menuService.setMenuOptionSelected(this.menuOptionSelected, true);
-    } else {
-        this.menuService.reloadMenuGroupSelected();
     }
   }
 
@@ -69,9 +58,8 @@ export class MenuComponent implements OnInit {
   }
 
   public selected(value:any):void {
-    console.log(value);
     if (value != null) {
-      this.menuOptionSelected = <MenuOption> value;
+      this.menuOptionSelected = this.mapMenuOptions.get(value.id);
       this.menuService.setMenuOptionSelected(this.menuOptionSelected, true);
     } else {
       this.menuService.reloadMenuGroupSelected();
@@ -79,12 +67,11 @@ export class MenuComponent implements OnInit {
   }
  
   public removed(value:any):void {
-    console.log(value);
     this.menuOptionSelected = null;
+    this.menuService.resetMenuOptionSelected();
   }
  
   public refreshValue(value:any):void {
-    console.log(value);
     this.menuOptionSelected = value;
   }
 }
