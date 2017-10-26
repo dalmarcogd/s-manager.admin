@@ -165,6 +165,7 @@
     "systemjs": "0.20.14",
     "zone.js": "0.8.12",
     "gulp": "^3.9.1",
-    "gulp-typescript": "~3.1.7"
+    "gulp-typescript": "~3.1.7",
+    "@types/gulp": "^4.0.0"
   }
 }
