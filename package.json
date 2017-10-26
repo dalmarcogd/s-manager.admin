@@ -5,6 +5,9 @@
   "repository": {
     "url": "https://github.com/dalmarcogd/s-manager.admin"
   },
+   "engines": {
+    "node": "6.11.1"
+  }
   "scripts": {
     "build.dev": "gulp build.dev --color --env-config dev",
     "build.dev.watch": "gulp build.dev.watch --color",
