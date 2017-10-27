@@ -164,7 +164,7 @@
     "rxjs": "^5.4.2",
     "systemjs": "0.20.14",
     "zone.js": "0.8.12",
-    "gulp": "^3.9.1",
+    "gulp": "^3.9.0t",
     "gulp-cached": "^1.1.0",
     "gulp-cheerio": "^0.6.2",
     "gulp-concat": "^2.6.0",
