@@ -114,7 +114,7 @@
     "traceur": "^0.0.111",
     "ts-node": "^3.0.4",
     "tslint": "^5.0.0",
-    "typescript": "^2.4.1",
+    "typescript": "^2.5.3",
     "walk": "^2.3.9",
     "yargs": "^8.0.1"
   },
@@ -123,7 +123,7 @@
     "@angular/common": "^4.3.0",
     "@angular/compiler": "^4.3.0",
     "@angular/core": "^4.3.0",
-    "@angular/forms": "^4.3.0",
+    "@angular/forms": "^4.3.0"
     "@angular/http": "^4.3.0",
     "@angular/platform-browser": "^4.3.0",
     "@angular/platform-browser-dynamic": "^4.3.0",
@@ -140,6 +140,7 @@
     "rxjs": "^5.4.2",
     "systemjs": "0.20.14",
     "zone.js": "0.8.12",
+    
     "gulp": "3.9.0",
     "gulp-cached": "^1.1.0",
     "gulp-cheerio": "^0.6.2",
@@ -170,6 +171,8 @@
     "@types/gulp-load-plugins": "^0.0.29",
     "@types/gulp-protractor": "^1.0.30",
     "@types/gulp-sass": "^0.0.30",
-    "@types/gulp-util": "^3.0.29"
+    "@types/gulp-util": "^3.0.29",
+    "ts-node": "^3.0.4",
+    "typescript": "^2.5.3",
   }
 }
