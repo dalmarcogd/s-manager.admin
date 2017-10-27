@@ -64,7 +64,6 @@
     "async": "^2.1.1",
     "codelyzer": "^3.1.2",
     "connect-history-api-fallback": "^1.3.0",
-    "cssnano": "^3.7.7",
     "deep-extend": "^0.5.0",
     "event-stream": "^3.3.4",
     "is-ci": "^1.0.9",
@@ -169,6 +168,7 @@
     "open": "0.0.5",
     "systemjs-builder": "0.16.12",
     "supports-color": "^5.0.0",
-    "autoprefixer": "^7.1.6"
+    "autoprefixer": "^7.1.6",
+    "cssnano": "^3.7.7"
   }
 }
