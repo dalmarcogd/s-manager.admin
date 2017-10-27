@@ -62,7 +62,6 @@
     "@types/systemjs": "^0.20.2",
     "@types/yargs": "^6.5.0",
     "async": "^2.1.1",
-    "autoprefixer": "^7.0.1",
     "codelyzer": "^3.1.2",
     "connect-history-api-fallback": "^1.3.0",
     "cssnano": "^3.7.7",
@@ -169,6 +168,7 @@
     "express-history-api-fallback": "^2.2.1",
     "open": "0.0.5",
     "systemjs-builder": "0.16.12",
-    "supports-color": "^5.0.0"
+    "supports-color": "^5.0.0",
+    "autoprefixer": "^7.1.6"
   }
 }
