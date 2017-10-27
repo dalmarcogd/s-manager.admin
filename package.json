@@ -174,7 +174,7 @@
     "@types/gulp-util": "^3.0.29",
     "ts-node": "^3.0.4",
     "typescript": "^2.5.3",
-    "typescript-register": "1.1.0"
+    "typescript-register": "1.1.0",
     "run-sequence": "^2.2.0"
   }
 }
